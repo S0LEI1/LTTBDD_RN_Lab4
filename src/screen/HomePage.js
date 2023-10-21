@@ -59,11 +59,12 @@ const arr = [
     style: "Roadbike",
   },
 ];
-const HomePage = () => {
+const HomePage = ({ navigation, route }) => {
   const [select, setSelect] = useState(false);
   const [roadbike, setRoadBike] = useState(false);
   const [mountain, setMountain] = useState(false);
   const [data, setData] = useState(arr);
+  const [img, setImg] = useState();
 
   return (
     <View style={styles.container}>
@@ -78,8 +79,9 @@ const HomePage = () => {
         </Text>
       </View>
       <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
-        <Pressable style={select ? styles.selectButton : styles.button}
-          onPress={()=>{
+        <Pressable
+          style={select ? styles.selectButton : styles.button}
+          onPress={() => {
             setSelect(!select);
             setMountain(false);
             setRoadBike(false);
@@ -88,41 +90,62 @@ const HomePage = () => {
         >
           <Text>All</Text>
         </Pressable>
-        <Pressable style={roadbike ? styles.selectButton : styles.button}
-          onPress={()=>{
+        <Pressable
+          style={roadbike ? styles.selectButton : styles.button}
+          onPress={() => {
             setRoadBike(!roadbike);
             setSelect(false);
             setMountain(false);
-       
-            const roadbike = arr.filter((item)=>{
-              return item.style == 'Roadbike'
-            })
+
+            const roadbike = arr.filter((item) => {
+              return item.style == "Roadbike";
+            });
             setData(roadbike);
-          }}>
+          }}
+        >
           <Text>Roadbike</Text>
         </Pressable>
-        <Pressable style={mountain ? styles.selectButton : styles.button}
-          onPress={()=>{
+        <Pressable
+          style={mountain ? styles.selectButton : styles.button}
+          onPress={() => {
             setData(arr);
             setMountain(!mountain);
             setSelect(false);
             setRoadBike(false);
-          
-            const mountain = arr.filter((item)=>{
-              return item.style == 'Mountain'
-            })
+
+            const mountain = arr.filter((item) => {
+              return item.style == "Mountain";
+            });
             setData(mountain);
-          }}>
+          }}
+        >
           <Text>Mountain</Text>
         </Pressable>
       </View>
-      <View>
+      <View style={{ justifyContent: "center", alignItems: "center", marginTop:20 }}>
         <FlatList
           data={data}
           numColumns={2}
           renderItem={({ item, index }) => (
-            <Pressable key={item.id}>
-              <View style={styles.imgWrapper}>
+            <Pressable
+              key={item.id}
+              onPress={() => {
+                console.log(item);
+                navigation.navigate({
+                  name: "Detail",
+                  params: { post: item },
+                  merge: true,
+                });
+              }}
+              style={styles.imgWrapper}
+            >
+              <Image
+                style={styles.heart}
+                source={require("../../assets/heart.png")}
+                resizeMode="stretch"
+              />
+
+              <View style={{ justifyContent: "center", alignItems: "center" }}>
                 <Image
                   style={styles.img}
                   source={item.source}

@@ -4,17 +4,18 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomePage from "./src/screen/HomePage";
 import LandingPage from "./src/screen/LandingPage";
-
+import DetailPage from "./src/screen/DetailPage";
 const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Landing"
+        initialRouteName="Home"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="Landing" component={LandingPage} />
         <Stack.Screen name="Home" component={HomePage} />
+        <Stack.Screen name="Detail" component={DetailPage} />
       </Stack.Navigator>
     </NavigationContainer>
   );

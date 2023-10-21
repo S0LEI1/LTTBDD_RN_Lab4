@@ -11,14 +11,12 @@ const styles = StyleSheet.create({
     marginRight:10,
     marginBottom:10,
     width: 167,
-    height: 200,
+    height: 210,
     backgroundColor: "#FEF5EC",
     shadowOffset: {
       width: 4,
       height: 0,
     },
-    justifyContent: "center",
-    alignItems: "center",
     shadowOpacity: 0.4,
     borderRadius: 10,
   },
@@ -46,6 +44,12 @@ const styles = StyleSheet.create({
     alignItems:'center',
     borderRadius:5,
     marginVertical:10
+  },
+  heart:{
+    width:25,
+    height:25,
+    justifyContent:'flex-start',
+    margin:10
   }
 });
 export default styles;
