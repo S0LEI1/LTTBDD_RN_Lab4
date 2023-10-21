@@ -60,7 +60,7 @@ const arr = [
   },
 ];
 const HomePage = ({ navigation, route }) => {
-  const [select, setSelect] = useState(false);
+  const [select, setSelect] = useState(true);
   const [roadbike, setRoadBike] = useState(false);
   const [mountain, setMountain] = useState(false);
   const [data, setData] = useState(arr);
@@ -81,11 +81,13 @@ const HomePage = ({ navigation, route }) => {
       <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
         <Pressable
           style={select ? styles.selectButton : styles.button}
+          disabled={select ? true : false}
           onPress={() => {
             setSelect(!select);
             setMountain(false);
             setRoadBike(false);
             setData(arr);
+          
           }}
         >
           <Text>All</Text>
